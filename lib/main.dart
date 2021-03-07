@@ -11,22 +11,16 @@ class Book {
   Book(this.title, this.author);
 }
 
-class BooksApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _BooksAppState();
-}
-
-class _BooksAppState extends State<BooksApp> {
-  BookRouterDelegate _routerDelegate = BookRouterDelegate();
-  BookRouteInformationParser _routeInformationParser =
-  BookRouteInformationParser();
-
+class BooksApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Books App',
-      routerDelegate: _routerDelegate,
-      routeInformationParser: _routeInformationParser,
+      home: Router(
+        routerDelegate: BookRouterDelegate(),
+        routeInformationParser: BookRouteInformationParser(),
+        routeInformationProvider: PlatformRouteInformationProvider(initialRouteInformation: RouteInformation(location: '/')),
+      ),
     );
   }
 }
